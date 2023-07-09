@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Spectrum"
 include(":app")
- 
+include(":features:core")
