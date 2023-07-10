@@ -32,6 +32,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -39,4 +43,14 @@ dependencies {
     api("androidx.appcompat:appcompat:1.6.1")
     api("com.google.android.material:material:1.9.0")
     api("androidx.constraintlayout:constraintlayout:2.1.4")
+    api("io.coil-kt:coil:2.4.0")
+
+    val navVersion = "2.6.0"
+    api("androidx.navigation:navigation-fragment-ktx:$navVersion")
+    api("androidx.navigation:navigation-ui-ktx:$navVersion")
+
+    val lifecycleVersion = "2.6.1"
+    api("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
+    api("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
+    api("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycleVersion")
 }
