@@ -41,8 +41,9 @@ android {
 dependencies {
     api("androidx.core:core-ktx:1.10.1")
     api("androidx.appcompat:appcompat:1.6.1")
-    api("com.google.android.material:material:1.9.0")
+    api("com.google.android.material:material:1.11.0-alpha01")
     api("androidx.constraintlayout:constraintlayout:2.1.4")
+    api("androidx.viewpager2:viewpager2:1.0.0")
     api("io.coil-kt:coil:2.4.0")
 
     val navVersion = "2.6.0"

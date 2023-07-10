@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="ThemeOverlay.BottomNavView" parent="Widget.Material3.BottomNavigationView">
+    <style name="ThemeOverlay.BottomNavView" parent="">
         <item name="motionDurationLong1">0</item>
     </style>
 </resources>

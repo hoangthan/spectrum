@@ -10,32 +10,28 @@ import com.spectrum.features.core.utils.viewBinding
 
 class ContainerFragment : Fragment(R.layout.fragment_container) {
 
+    private lateinit var pagerAdapter: HomePagerAdapter
     private val binding by viewBinding(FragmentContainerBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.vpHomeScreen.isUserInputEnabled = false //Prevent swipe action
-
-        binding.bottomNav.setOnItemSelectedListener {
-            onBottomNavItemSelected(it)
-            it.itemId != R.id.actionSearch //Should not high-light the color of search icon
-        }
+        initViewPager()
+        initViewListener()
     }
 
-    private fun onBottomNavItemSelected(menuItem: MenuItem) {
-        when (menuItem.itemId) {
-            R.id.actionSearch -> {
-                findNavController().navigate(R.id.action_containerFragment_to_favouriteFragment2)
-            }
+    private fun initViewListener() {
+        binding.bottomNav.setOnItemSelectedListener(::onBottomNavItemSelected)
+    }
 
-            R.id.actionHome -> {
+    private fun initViewPager() {
+        pagerAdapter = HomePagerAdapter(this)
+        binding.vpHomeScreen.adapter = pagerAdapter
+        binding.vpHomeScreen.isUserInputEnabled = false //Prevent swipe action
+    }
 
-            }
-
-            R.id.actionFavourite -> {
-
-            }
-        }
+    private fun onBottomNavItemSelected(menuItem: MenuItem): Boolean {
+        val index = pagerAdapter.getIndex(menuItem.itemId) ?: return false
+        binding.vpHomeScreen.setCurrentItem(index, false)
+        return true
     }
 }

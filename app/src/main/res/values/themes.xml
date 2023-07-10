@@ -7,7 +7,8 @@
         <item name="postSplashScreenTheme">@style/Theme.Spectrum</item>
     </style>
 
-    <style name="Base.Theme.Spectrum" parent="Theme.Material3.DayNight.NoActionBar">
+    <!--Theme.Material3.DayNight.NoActionBar-->
+    <style name="Base.Theme.Spectrum" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorAccent">@color/color_primary</item>
         <item name="colorSecondaryContainer">@color/color_secondary</item>

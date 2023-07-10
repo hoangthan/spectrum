@@ -8,14 +8,17 @@
         android:id="@+id/containerFragment"
         android:name="com.spectrum.assignment.ContainerFragment"
         android:label="ContainerFragment">
+
         <action
-            android:id="@+id/action_containerFragment_to_favouriteFragment2"
-            app:destination="@id/favouriteFragment"
+            android:id="@+id/action_to_movie_details"
+            app:destination="@id/movieDetails"
             app:popUpToSaveState="true"
             app:restoreState="true" />
     </fragment>
+
     <fragment
-        android:id="@+id/favouriteFragment"
-        android:name="com.spectrum.assignment.FavouriteFragment"
-        android:label="FavouriteFragment" />
+        android:id="@+id/movieDetails"
+        android:name="com.spectrum.assignment.MovieDetails"
+        android:label="MovieDetails" />
+
 </navigation>
