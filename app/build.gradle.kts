@@ -41,12 +41,14 @@ android {
     }
 
     buildFeatures {
+        buildConfig = true
         viewBinding = true
     }
 }
 
 dependencies {
     implementation(project(":features:core"))
+    implementation(project(":libraries:network"))
     implementation(Deps.splash)
     implementation(Deps.hiltAndroid)
     kapt(Deps.hiltCompiler)

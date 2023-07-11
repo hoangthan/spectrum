@@ -1,5 +1,6 @@
 package com.spectrum.libraries.network
 
+import com.spectrum.libraries.core.BuildConfig
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -43,7 +44,9 @@ class NetworkModule {
     ): OkHttpClient {
         val clientBuilder = OkHttpClient.Builder()
 
-        clientBuilder.addInterceptor(httpLoggingInterceptor)
+        if (BuildConfig.DEBUG) {
+            clientBuilder.addInterceptor(httpLoggingInterceptor)
+        }
 
         return clientBuilder
             .connectTimeout(NetworkConfig.NETWORK_TIMEOUT, TimeUnit.SECONDS)
