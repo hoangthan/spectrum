@@ -16,3 +16,5 @@ dependencyResolutionManagement {
 rootProject.name = "Spectrum"
 include(":app")
 include(":features:core")
+include(":libraries:core")
+include(":libraries:network")

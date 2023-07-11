@@ -7,7 +7,10 @@ object Versions {
     const val viewPager2 = "1.0.0"
     const val pagingRuntime = "3.1.1"
     const val coil = "2.4.0"
-    const val navigationVersion = "2.6.0"
-    const val lifecycleVersion = "2.6.1"
-    const val hiltVersion = "2.46.1"
+    const val navigation = "2.6.0"
+    const val lifeCycle = "2.6.1"
+    const val hilt = "2.46.1"
+    const val moshi = "1.14.0"
+    const val retrofit = "2.9.0"
+    const val okHttp = "5.0.0-alpha.2"
 }

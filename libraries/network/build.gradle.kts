@@ -5,8 +5,15 @@ plugins {
 }
 
 android {
-    namespace = "com.spectrum.features.core"
+    namespace = "com.spectrum.libraries.core"
     compileSdk = ConfigData.compileSdkVersion
+
+    defaultConfig {
+        minSdk = ConfigData.minSdkVersion
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
+    }
 
     buildTypes {
         release {
@@ -17,34 +24,24 @@ android {
             )
         }
     }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-
     kotlinOptions {
         jvmTarget = "1.8"
-    }
-
-    buildFeatures {
-        viewBinding = true
     }
 }
 
 dependencies {
-    api(Deps.androidKtx)
-    api(Deps.appCompat)
-    api(Deps.materialUi)
-    api(Deps.constraintLayout)
-    api(Deps.viewPager)
-    api(Deps.pagingRuntime)
-    api(Deps.coil)
-    api(Deps.navigationUi)
-    api(Deps.navigationFragment)
-    api(Deps.lifecycleRuntime)
-    api(Deps.lifecycleViewModel)
-    api(Deps.viewmodelViewModelState)
-    api(Deps.hiltAndroid)
+    api(Deps.retrofitRuntime)
+    api(Deps.retrofitMoshi)
+    api(Deps.moshiCodegen)
+    api(Deps.moshiAdapter)
+    api(Deps.moshiCore)
+    api(Deps.moshiKotlin)
+    api(Deps.okhttpLogging)
+    api(Deps.okhttpCore)
+    implementation(Deps.hiltAndroid)
     kapt(Deps.hiltCompiler)
 }

@@ -8,13 +8,24 @@ object Deps {
     const val pagingRuntime = "androidx.paging:paging-runtime-ktx:${Versions.pagingRuntime}"
     const val coil = "io.coil-kt:coil:${Versions.coil}"
 
-    const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigationVersion}"
-    const val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigationVersion}"
+    const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
+    const val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
 
-    const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleVersion}"
-    const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleVersion}"
-    const val viewmodelViewModelState = "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.lifecycleVersion}"
+    const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifeCycle}"
+    const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifeCycle}"
+    const val viewmodelViewModelState = "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.lifeCycle}"
 
-    const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.hiltVersion}"
-    const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hiltVersion}"
+    const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.hilt}"
+    const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
+
+    const val moshiCore = "com.squareup.moshi:moshi:${Versions.moshi}"
+    const val moshiKotlin = "com.squareup.moshi:moshi-kotlin:${Versions.moshi}"
+    const val moshiAdapter = "com.squareup.moshi:moshi-adapters:${Versions.moshi}"
+    const val moshiCodegen = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}"
+
+    const val retrofitRuntime = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    const val retrofitMoshi = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
+
+    const val okhttpCore = "com.squareup.okhttp3:okhttp:${Versions.okHttp}"
+    const val okhttpLogging = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp}"
 }
