@@ -49,7 +49,9 @@ android {
 dependencies {
     implementation(project(":features:core"))
     implementation(project(":libraries:network"))
+    implementation(project(":libraries:movie"))
     implementation(Deps.splash)
+
     implementation(Deps.hiltAndroid)
     kapt(Deps.hiltCompiler)
 }

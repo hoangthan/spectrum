@@ -1,5 +1,6 @@
 package com.spectrum.libraries.network
 
+import com.skydoves.sandwich.adapters.ApiResponseCallAdapterFactory
 import com.spectrum.libraries.core.BuildConfig
 import com.squareup.moshi.Moshi
 import dagger.Module
@@ -8,6 +9,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.CallAdapter
 import retrofit2.Converter
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
@@ -56,5 +58,11 @@ class NetworkModule {
             .followSslRedirects(true)
             .retryOnConnectionFailure(true)
             .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideCallAdapterFactory(): CallAdapter.Factory {
+        return ApiResponseCallAdapterFactory.create()
     }
 }

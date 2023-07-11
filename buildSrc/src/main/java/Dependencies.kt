@@ -18,7 +18,6 @@ object Deps {
     const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.hilt}"
     const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
 
-    const val moshiCore = "com.squareup.moshi:moshi:${Versions.moshi}"
     const val moshiKotlin = "com.squareup.moshi:moshi-kotlin:${Versions.moshi}"
     const val moshiAdapter = "com.squareup.moshi:moshi-adapters:${Versions.moshi}"
     const val moshiCodegen = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}"
@@ -28,4 +27,6 @@ object Deps {
 
     const val okhttpCore = "com.squareup.okhttp3:okhttp:${Versions.okHttp}"
     const val okhttpLogging = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp}"
+
+    const val sandwich = "com.github.skydoves:sandwich:${Versions.sandwich}"
 }
