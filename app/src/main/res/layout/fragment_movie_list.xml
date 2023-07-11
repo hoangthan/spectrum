@@ -14,6 +14,6 @@
         android:scrollbars="vertical"
         tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         tools:listitem="@layout/item_movie_card"
-        tools:spanCount="2" />
+        tools:spanCount="1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

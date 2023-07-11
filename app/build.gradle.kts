@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.dagger.hilt.android")
+    id("kotlin-parcelize")
     kotlin("kapt")
 }
 
@@ -50,8 +52,6 @@ dependencies {
     val hiltVersion = "2.46.1"
     implementation("com.google.dagger:hilt-android:$hiltVersion")
     kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
-
-
 }
 
 kapt {
