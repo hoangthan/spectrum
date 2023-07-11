@@ -8,14 +8,14 @@ plugins {
 
 android {
     namespace = "com.spectrum.assignment"
-    compileSdk = 33
+    compileSdk = ConfigData.compileSdkVersion
 
     defaultConfig {
         applicationId = "com.spectrum.assignment"
-        minSdk = 24
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = ConfigData.minSdkVersion
+        targetSdk = ConfigData.targetSdkVersion
+        versionCode = ConfigData.versionCode
+        versionName = ConfigData.versionName
 
         compileSdkPreview = "UpsideDownCake"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -46,12 +46,10 @@ android {
 }
 
 dependencies {
-    implementation("androidx.core:core-splashscreen:1.1.0-alpha01")
     implementation(project(":features:core"))
-
-    val hiltVersion = "2.46.1"
-    implementation("com.google.dagger:hilt-android:$hiltVersion")
-    kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
+    implementation(Deps.splash)
+    implementation(Deps.hiltAndroid)
+    kapt(Deps.hiltCompiler)
 }
 
 kapt {
