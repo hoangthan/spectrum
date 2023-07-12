@@ -23,6 +23,12 @@ class MovieRepositoryImpl @Inject constructor(
             .toUseCaseResult()
     }
 
+    override suspend fun searchMovie(name: String, page: Int): UseCaseResult<PagedMovieList> {
+        return movieApiService.searchMovie(name, page)
+            .mapSuccess { this.toPagedMoveList() }
+            .toUseCaseResult()
+    }
+
     private sealed class SourcePath(val path: String) {
         object Upcoming : SourcePath("upcoming")
         object Popular : SourcePath("popular")
