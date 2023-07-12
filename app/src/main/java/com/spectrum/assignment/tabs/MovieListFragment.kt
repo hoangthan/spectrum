@@ -37,8 +37,8 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
     }
 
     private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(requireContext())
         val margin = com.spectrum.features.core.R.dimen.margin_regular
+        val layoutManager = LinearLayoutManager(requireContext())
         val marginDimen = resources.getDimensionPixelSize(margin)
 
         with(binding.rcvMovieList) {
