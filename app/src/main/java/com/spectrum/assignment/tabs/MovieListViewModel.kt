@@ -1,56 +1,53 @@
 package com.spectrum.assignment.tabs
 
-import android.os.Parcelable
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.spectrum.libraries.movie.datasource.remote.MovieApiService
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
+import com.spectrum.libraries.movie.domain.usecase.GetMovieUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
-import kotlinx.parcelize.Parcelize
 import javax.inject.Inject
 
 @HiltViewModel
+@OptIn(ExperimentalCoroutinesApi::class)
 class MovieListViewModel @Inject constructor(
-    private val apiService: MovieApiService
+    private val getMovieUseCase: GetMovieUseCase
 ) : ViewModel() {
 
-    private val filterOptionStateFlow = MutableStateFlow(MovieFilterOption())
+    private val filterOptionStateFlow = MutableStateFlow<MovieScreen?>(null)
 
-    init {
-        filterOptionStateFlow
-            .onEach {
-                val response = apiService.getMovies("now_playing")
-                Log.d("---", "$response")
-            }
-            .flowOn(Dispatchers.IO)
-            .launchIn(viewModelScope)
-    }
+    private val pageConfig = PagingConfig(
+        prefetchDistance = 1,
+        pageSize = MoviePagingSource.PAGE_SIZE,
+        initialLoadSize = MoviePagingSource.PAGE_SIZE,
+    )
+
+    val moviePaging = filterOptionStateFlow
+        .filterNotNull()
+        .map { it.toMovieSource() }
+        .flatMapLatest {
+            val pagingSource = MoviePagingSource(it, getMovieUseCase)
+            Pager(pageConfig) { pagingSource }.flow
+        }
+        .cachedIn(viewModelScope)
+        .flowOn(Dispatchers.IO)
 
     fun dispatchEvent(event: ViewEvent) {
         when (event) {
-            is ViewEvent.UpdateType -> filterOptionStateFlow.update { it.copy(movieType = event.movieType) }
-            is ViewEvent.UpdateKeyWord -> filterOptionStateFlow.update { it.copy(keyWord = event.keyword) }
+            is ViewEvent.UpdateType -> filterOptionStateFlow.update { event.movieType }
         }
     }
 
-    data class MovieFilterOption(
-        val keyWord: String? = null,
-        val movieType: MovieType? = null,
-    )
-
     sealed interface ViewEvent {
-        data class UpdateKeyWord(val keyword: String) : ViewEvent
-        data class UpdateType(val movieType: MovieType) : ViewEvent
-    }
-
-    @Parcelize
-    enum class MovieType : Parcelable {
-        NowPlaying, TopRated, Popular, Upcoming
+        data class UpdateType(val movieType: MovieScreen) : ViewEvent
     }
 }

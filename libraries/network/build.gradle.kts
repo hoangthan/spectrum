@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.spectrum.libraries.core"
+    namespace = "com.spectrum.libraries.network"
     compileSdk = ConfigData.compileSdkVersion
 
     buildFeatures {
@@ -15,6 +15,7 @@ android {
 }
 
 dependencies {
+    api(project(":libraries:core"))
     api(Deps.retrofitRuntime)
     api(Deps.retrofitMoshi)
     api(Deps.moshiAdapter)

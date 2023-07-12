@@ -47,10 +47,10 @@ android {
 }
 
 dependencies {
-    implementation(project(":features:core"))
-    implementation(project(":libraries:network"))
-    implementation(project(":libraries:movie"))
     implementation(Deps.splash)
+    implementation(project(":features:core"))
+    implementation(project(":features:movie"))
+    implementation(project(":libraries:movie"))
 
     implementation(Deps.hiltAndroid)
     kapt(Deps.hiltCompiler)

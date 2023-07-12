@@ -14,6 +14,7 @@ android {
 }
 
 dependencies {
+    api(project(":libraries:core"))
     api(Deps.androidKtx)
     api(Deps.appCompat)
     api(Deps.materialUi)

@@ -1,7 +1,7 @@
 package com.spectrum.libraries.network
 
 import com.skydoves.sandwich.adapters.ApiResponseCallAdapterFactory
-import com.spectrum.libraries.core.BuildConfig
+import com.spectrum.libraries.network.interceptor.AuthInterceptor
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -51,6 +51,7 @@ class NetworkModule {
         }
 
         return clientBuilder
+            .addInterceptor(AuthInterceptor())
             .connectTimeout(NetworkConfig.NETWORK_TIMEOUT, TimeUnit.SECONDS)
             .writeTimeout(NetworkConfig.NETWORK_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(NetworkConfig.NETWORK_TIMEOUT, TimeUnit.SECONDS)

@@ -10,8 +10,8 @@ import com.spectrum.assignment.R
 import com.spectrum.assignment.components.MovieItemDecoration
 import com.spectrum.assignment.components.MovieListAdapter
 import com.spectrum.assignment.databinding.FragmentMovieListBinding
-import com.spectrum.assignment.tabs.MovieListViewModel.MovieType
 import com.spectrum.assignment.tabs.MovieListViewModel.ViewEvent
+import com.spectrum.features.core.utils.utils.collectWhenCreated
 import com.spectrum.features.core.utils.utils.parcelable
 import com.spectrum.features.core.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
 
-    private lateinit var movieType: MovieType
+    private lateinit var movieType: MovieScreen
     private val movieAdapter = MovieListAdapter()
     private val viewModel by viewModels<MovieListViewModel>()
     private val binding by viewBinding(FragmentMovieListBinding::bind)
@@ -50,12 +50,14 @@ class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
     }
 
     private fun collectData() {
-        //TODO: Collect from view model
+        viewModel.moviePaging.collectWhenCreated(viewLifecycleOwner) {
+            movieAdapter.submitData(viewLifecycleOwner.lifecycle, it)
+        }
     }
 
     companion object {
         private const val movieTypeKey = "MovieType"
-        fun newInstance(movieType: MovieType): MovieListFragment {
+        fun newInstance(movieType: MovieScreen): MovieListFragment {
             return MovieListFragment().apply {
                 arguments = bundleOf(movieTypeKey to movieType)
             }

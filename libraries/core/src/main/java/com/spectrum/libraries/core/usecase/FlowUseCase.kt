@@ -1,5 +1,7 @@
 package com.spectrum.libraries.core.usecase
 
-abstract class FlowUseCase<in T, out V> {
+import kotlinx.coroutines.flow.Flow
 
+interface FlowUseCase<in T, out V> {
+    fun execute(param: T): Flow<UseCaseResult<V>>
 }

@@ -1,38 +1,11 @@
-package com.spectrum.libraries.movie.datasource.remote
+package com.spectrum.libraries.movie.datasource.remote.dto
 
+import com.spectrum.libraries.movie.domain.usecase.model.Movie
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
-
 @JsonClass(generateAdapter = true)
-data class GetMovieResponseDto(
-    @Json(name = "dates")
-    val dates: DateRangeDto? = null,
-
-    @Json(name = "page")
-    val page: Int? = null,
-
-    @Json(name = "results")
-    val results: List<Result?>? = null,
-
-    @Json(name = "total_pages")
-    val totalPages: Int? = null,
-
-    @Json(name = "total_results")
-    val totalResults: Int? = null
-)
-
-@JsonClass(generateAdapter = true)
-data class DateRangeDto(
-    @Json(name = "maximum")
-    val maximum: String? = null,
-
-    @Json(name = "minimum")
-    val minimum: String? = null
-)
-
-@JsonClass(generateAdapter = true)
-data class Result(
+data class MovieDto(
     @Json(name = "adult")
     val adult: Boolean? = null,
 
@@ -75,3 +48,22 @@ data class Result(
     @Json(name = "vote_count")
     val voteCount: Int? = null
 )
+
+fun MovieDto.toDomain(): Movie {
+    return Movie(
+        adult = adult,
+        backdropPath = backdropPath,
+        genreIds = genreIds,
+        id = id,
+        originalLanguage = originalLanguage,
+        originalTitle = originalTitle,
+        overview = overview,
+        popularity = popularity,
+        posterPath = posterPath,
+        releaseDate = releaseDate,
+        title = title,
+        video = video,
+        voteAverage = voteAverage,
+        voteCount = voteCount
+    )
+}

@@ -8,6 +8,8 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.ImageSourceSelector
+import com.PosterSize
 import com.google.android.material.chip.Chip
 import com.spectrum.assignment.R
 import com.spectrum.assignment.components.MovieListAdapter.MovieItemViewHolder
@@ -33,21 +35,23 @@ class MovieListAdapter : PagingDataAdapter<MovieUiModel, MovieItemViewHolder>(mo
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bindData(movie: MovieUiModel) {
-            binding.tvMovieName.text = movie.title
-            binding.imgPoster.load("https://image.tmdb.org/t/p/w500/kVG8zFFYrpyYLoHChuEeOGAd6Ru.jpg")
-            //binding.imgPoster.load(movie.posterPath)
-            binding.chipAdult.isVisible = movie.adult
-            binding.tvVoteAvg.text = movie.voteAverage.toString()
-            binding.tvLanguage.text = movie.originalLanguage
-            binding.tvReleaseDate.text = movie.releaseDate
+            val posterUrl = ImageSourceSelector.getImageUrl(movie.posterPath, PosterSize.Width342)
 
-            binding.chipGroupGenres.removeAllViews()
-            binding.chipGroupContainer.isGone = movie.genres.isEmpty()
+            with(binding) {
+                imgPoster.load(posterUrl)
+                tvMovieName.text = movie.title
+                chipAdult.isVisible = movie.adult ?: false
+                tvVoteAvg.text = movie.voteAverage.toString()
+                tvLanguage.text = movie.originalLanguage
+                tvReleaseDate.text = movie.releaseDate
+                chipGroupGenres.removeAllViews()
+                chipGroupContainer.isGone = movie.genres.isEmpty()
 
-            movie.genres.forEach {
-                val chip = Chip(binding.root.context, null, R.style.ChipGenresStyle)
-                chip.text = it.name
-                binding.chipGroupGenres.addView(chip)
+                movie.genres.forEach {
+                    val chip = Chip(binding.root.context, null, R.style.ChipGenresStyle)
+                    chip.text = it.name
+                    chipGroupGenres.addView(chip)
+                }
             }
         }
     }

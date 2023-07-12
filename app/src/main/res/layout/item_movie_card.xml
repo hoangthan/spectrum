@@ -97,6 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawablePadding="@dimen/padding_medium"
+                android:textAllCaps="true"
                 app:drawableStartCompat="@drawable/ic_language"
                 app:layout_constraintEnd_toStartOf="@+id/tvReleaseDate"
                 app:layout_constraintStart_toEndOf="@+id/tvVoteAvg"
