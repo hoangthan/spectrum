@@ -25,7 +25,7 @@ class GenresRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getGenresById(id: Long): Genres? {
+    override suspend fun getGenresById(id: Int): Genres? {
         return getAllGenres().firstOrNull { it.id == id }
     }
 }

@@ -7,7 +7,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class GenreDto(
     @Json(name = "id")
-    val id: Long? = null,
+    val id: Int? = null,
 
     @Json(name = "name")
     val name: String? = null

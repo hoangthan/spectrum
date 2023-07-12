@@ -27,7 +27,7 @@ fun Movie.toUiModel(): MovieUiModel? {
         id = id!!,
         adult = adult,
         backdropPath = backdropPath,
-        genres = listOf(),
+        genres = genres.map { it.toUiModel() },
         originalLanguage = originalLanguage,
         originalTitle = originalTitle,
         overview = overview,

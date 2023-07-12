@@ -3,16 +3,21 @@ package com.spectrum.libraries.movie.datasource.repositoryImpl
 import com.skydoves.sandwich.mapSuccess
 import com.spectrum.libraries.core.usecase.UseCaseResult
 import com.spectrum.libraries.movie.datasource.remote.apiService.MovieApiService
+import com.spectrum.libraries.movie.datasource.remote.dto.toDomain
 import com.spectrum.libraries.movie.datasource.remote.dto.toPagedMoveList
-import com.spectrum.libraries.movie.domain.repository.MovieRepository
+import com.spectrum.libraries.movie.domain.model.Genres
+import com.spectrum.libraries.movie.domain.model.MovieDetails
 import com.spectrum.libraries.movie.domain.model.MovieSource
 import com.spectrum.libraries.movie.domain.model.PagedMovieList
+import com.spectrum.libraries.movie.domain.repository.MovieRepository
 import com.spectrum.libraries.network.utils.toUseCaseResult
 import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(
     private val movieApiService: MovieApiService
 ) : MovieRepository {
+
+    private val genresMap = mutableMapOf<Int, Genres>()
 
     override suspend fun getLiveMovies(
         type: MovieSource,
@@ -27,6 +32,12 @@ class MovieRepositoryImpl @Inject constructor(
     override suspend fun searchMovie(name: String, page: Int): UseCaseResult<PagedMovieList> {
         return movieApiService.searchMovie(name, page)
             .mapSuccess { this.toPagedMoveList() }
+            .toUseCaseResult()
+    }
+
+    override suspend fun getMovieDetails(id: Long): UseCaseResult<MovieDetails> {
+        return movieApiService.getMovieDetails(id)
+            .mapSuccess { toDomain() }
             .toUseCaseResult()
     }
 

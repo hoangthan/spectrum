@@ -5,5 +5,5 @@ import com.spectrum.libraries.movie.domain.model.Genres
 interface GenresRepository {
     suspend fun getAllGenres(): List<Genres>
 
-    suspend fun getGenresById(id: Long): Genres?
+    suspend fun getGenresById(id: Int): Genres?
 }

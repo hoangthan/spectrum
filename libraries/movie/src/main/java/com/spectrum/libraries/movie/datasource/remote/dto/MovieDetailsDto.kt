@@ -1,5 +1,6 @@
 package com.spectrum.libraries.movie.datasource.remote.dto
 
+import com.spectrum.libraries.movie.domain.model.MovieDetails
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -11,9 +12,6 @@ data class MovieDetailsDto(
 
     @Json(name = "backdrop_path")
     val backdropPath: String? = null,
-
-    @Json(name = "belongs_to_collection")
-    val belongsToCollection: BelongsToCollection? = null,
 
     @Json(name = "budget")
     val budget: Int? = null,
@@ -45,12 +43,6 @@ data class MovieDetailsDto(
     @Json(name = "poster_path")
     val posterPath: String? = null,
 
-    @Json(name = "production_companies")
-    val productionCompanies: List<ProductionCompany?>? = null,
-
-    @Json(name = "production_countries")
-    val productionCountries: List<ProductionCountry?>? = null,
-
     @Json(name = "release_date")
     val releaseDate: String? = null,
 
@@ -61,7 +53,7 @@ data class MovieDetailsDto(
     val runtime: Int? = null,
 
     @Json(name = "spoken_languages")
-    val spokenLanguages: List<SpokenLanguage?>? = null,
+    val spokenLanguages: List<SpokenLanguageDto?>? = null,
 
     @Json(name = "status")
     val status: String? = null,
@@ -83,52 +75,33 @@ data class MovieDetailsDto(
 )
 
 @JsonClass(generateAdapter = true)
-data class BelongsToCollection(
-    @Json(name = "backdrop_path")
-    val backdropPath: String? = null,
-
-    @Json(name = "id")
-    val id: Int? = null,
-
-    @Json(name = "name")
-    val name: String? = null,
-
-    @Json(name = "poster_path")
-    val posterPath: String? = null
-)
-
-@JsonClass(generateAdapter = true)
-data class ProductionCompany(
-    @Json(name = "id")
-    val id: Int? = null,
-
-    @Json(name = "logo_path")
-    val logoPath: String? = null,
-
-    @Json(name = "name")
-    val name: String? = null,
-
-    @Json(name = "origin_country")
-    val originCountry: String? = null
-)
-
-@JsonClass(generateAdapter = true)
-data class ProductionCountry(
-    @Json(name = "iso_3166_1")
-    val iso31661: String? = null,
-
-    @Json(name = "name")
-    val name: String? = null
-)
-
-@JsonClass(generateAdapter = true)
-data class SpokenLanguage(
+data class SpokenLanguageDto(
     @Json(name = "english_name")
     val englishName: String? = null,
-
-    @Json(name = "iso_639_1")
-    val iso6391: String? = null,
-
-    @Json(name = "name")
-    val name: String? = null
 )
+
+fun MovieDetailsDto.toDomain(): MovieDetails {
+    return MovieDetails(
+        adult = adult,
+        backdropPath = backdropPath,
+        budget = budget,
+        genres = genres?.filterNotNull()?.mapNotNull { it.toDomain() } ?: listOf(),
+        homepage = homepage,
+        id = id,
+        imdbId = imdbId,
+        originalLanguage = originalLanguage,
+        originalTitle = originalTitle,
+        overview = overview,
+        popularity = popularity,
+        posterPath = posterPath,
+        releaseDate = releaseDate,
+        revenue = revenue,
+        runtime = runtime,
+        status = status,
+        tagline = tagline,
+        title = title,
+        video = video,
+        voteAverage = voteAverage,
+        voteCount = voteCount,
+    )
+}

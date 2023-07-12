@@ -23,6 +23,26 @@
             android:src="@drawable/poster"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <HorizontalScrollView
+            android:id="@+id/chipGroupContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/padding_regular"
+            android:paddingVertical="@dimen/padding_medium"
+            tools:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvMovieName">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupGenres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:visibility="visible"
+                app:chipSpacing="@dimen/margin_regular"
+                app:singleLine="true" />
+        </HorizontalScrollView>
+
         <com.google.android.material.chip.Chip
             android:id="@+id/chipAdult"
             style="@style/Widget.MaterialComponents.Chip.Action"
@@ -50,7 +70,7 @@
             android:paddingHorizontal="@dimen/padding_regular"
             android:paddingTop="@dimen/padding_medium"
             android:paddingBottom="@dimen/padding_regular"
-            app:layout_constraintTop_toBottomOf="@id/tvMovieName">
+            app:layout_constraintTop_toBottomOf="@id/chipGroupContainer">
 
             <TextView
                 android:id="@+id/tvVoteAvg"
