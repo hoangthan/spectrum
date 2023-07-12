@@ -1,6 +1,6 @@
 package com.spectrum.libraries.movie.datasource.remote.dto
 
-import com.spectrum.libraries.movie.domain.usecase.model.PagedMovieList
+import com.spectrum.libraries.movie.domain.model.PagedMovieList
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 

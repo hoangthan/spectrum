@@ -1,11 +1,12 @@
-package com.spectrum.libraries.movie.datasource
+package com.spectrum.libraries.movie.datasource.repositoryImpl
 
 import com.skydoves.sandwich.mapSuccess
 import com.spectrum.libraries.core.usecase.UseCaseResult
-import com.spectrum.libraries.movie.datasource.remote.MovieApiService
+import com.spectrum.libraries.movie.datasource.remote.apiService.MovieApiService
 import com.spectrum.libraries.movie.datasource.remote.dto.toPagedMoveList
-import com.spectrum.libraries.movie.domain.usecase.model.MovieSource
-import com.spectrum.libraries.movie.domain.usecase.model.PagedMovieList
+import com.spectrum.libraries.movie.domain.repository.MovieRepository
+import com.spectrum.libraries.movie.domain.model.MovieSource
+import com.spectrum.libraries.movie.domain.model.PagedMovieList
 import com.spectrum.libraries.network.utils.toUseCaseResult
 import javax.inject.Inject
 

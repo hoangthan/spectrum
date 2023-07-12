@@ -1,4 +1,4 @@
-package com.spectrum.libraries.movie.domain.usecase.model
+package com.spectrum.libraries.movie.domain.model
 
 data class Genres(
     val id: Long,

@@ -1,4 +1,4 @@
-package com.spectrum.libraries.movie.domain.usecase.model
+package com.spectrum.libraries.movie.domain.model
 
 sealed interface MovieSource {
     object NowPlaying : MovieSource

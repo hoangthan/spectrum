@@ -1,6 +1,6 @@
 package com.spectrum.features.movie.ui.components
 
-import com.spectrum.libraries.movie.domain.usecase.model.Movie
+import com.spectrum.libraries.movie.domain.model.Movie
 
 
 data class MovieUiModel(

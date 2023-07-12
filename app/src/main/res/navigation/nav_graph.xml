@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/movieDetails"
-        android:name="com.spectrum.features.movie.ui.screens.movieDetails.MovieDetails"
+        android:name="com.spectrum.features.movie.ui.screens.movieDetails.MovieDetailsFragment"
         android:label="MovieDetails">
 
         <argument

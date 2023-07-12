@@ -6,9 +6,14 @@ import com.spectrum.feature.movie.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MovieDetails : Fragment(R.layout.fragment_movie_list) {
+class MovieDetailsFragment : Fragment(R.layout.fragment_movie_list) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+    }
+
+    companion object {
+        const val MOVIE_ID_KEY = "id"
     }
 }

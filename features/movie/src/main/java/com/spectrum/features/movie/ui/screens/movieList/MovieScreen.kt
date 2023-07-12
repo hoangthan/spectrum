@@ -1,7 +1,7 @@
 package com.spectrum.features.movie.ui.screens.movieList
 
 import android.os.Parcelable
-import com.spectrum.libraries.movie.domain.usecase.model.MovieSource
+import com.spectrum.libraries.movie.domain.model.MovieSource
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

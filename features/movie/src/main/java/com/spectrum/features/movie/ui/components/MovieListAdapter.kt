@@ -2,14 +2,11 @@ package com.spectrum.features.movie.ui.components
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.google.android.material.chip.Chip
-import com.spectrum.feature.movie.R
 import com.spectrum.feature.movie.databinding.ItemMovieCardBinding
 import com.spectrum.features.movie.ui.components.MovieListAdapter.MovieItemViewHolder
 import com.spectrum.features.movie.utils.ImageSourceSelector
@@ -47,7 +44,6 @@ class MovieListAdapter constructor(
                 tvVoteAvg.text = movie.voteAverage.toString()
                 tvLanguage.text = movie.originalLanguage
                 tvReleaseDate.text = movie.releaseDate
-                addGenresTag(movie)
                 loadPosterImage(movie)
             }
 
@@ -57,17 +53,6 @@ class MovieListAdapter constructor(
         private fun loadPosterImage(movie: MovieUiModel) {
             val posterUrl = ImageSourceSelector.getImageUrl(movie.posterPath, PosterSize.Width342)
             binding.imgPoster.load(posterUrl)
-        }
-
-        private fun addGenresTag(movie: MovieUiModel) {
-            binding.chipGroupGenres.removeAllViews()
-            binding.chipGroupContainer.isGone = movie.genres.isEmpty()
-
-            movie.genres.forEach {
-                val chip = Chip(binding.root.context, null, R.style.ChipGenresStyle)
-                chip.text = it.name
-                binding.chipGroupGenres.addView(chip)
-            }
         }
     }
 

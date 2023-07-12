@@ -1,6 +1,6 @@
 package com.spectrum.libraries.movie.datasource.remote.dto
 
-import com.spectrum.libraries.movie.domain.usecase.model.Movie
+import com.spectrum.libraries.movie.domain.model.Movie
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -53,7 +53,6 @@ fun MovieDto.toDomain(): Movie {
     return Movie(
         adult = adult,
         backdropPath = backdropPath,
-        genreIds = genreIds,
         id = id,
         originalLanguage = originalLanguage,
         originalTitle = originalTitle,

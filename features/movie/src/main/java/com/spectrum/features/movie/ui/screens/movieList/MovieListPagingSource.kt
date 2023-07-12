@@ -4,8 +4,8 @@ import com.spectrum.features.movie.ui.screens.common.AbstractMoviePagingSource
 import com.spectrum.libraries.core.usecase.UseCaseResult
 import com.spectrum.libraries.movie.domain.usecase.GetMovieUseCase
 import com.spectrum.libraries.movie.domain.usecase.GetMovieUseCase.GetMovieParam
-import com.spectrum.libraries.movie.domain.usecase.model.MovieSource
-import com.spectrum.libraries.movie.domain.usecase.model.PagedMovieList
+import com.spectrum.libraries.movie.domain.model.MovieSource
+import com.spectrum.libraries.movie.domain.model.PagedMovieList
 import kotlinx.coroutines.flow.first
 
 class MovieListPagingSource constructor(

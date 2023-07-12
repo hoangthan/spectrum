@@ -2,8 +2,8 @@ package com.spectrum.libraries.movie.domain.usecase
 
 import com.spectrum.libraries.core.usecase.FlowUseCase
 import com.spectrum.libraries.core.usecase.UseCaseResult
-import com.spectrum.libraries.movie.datasource.MovieRepository
-import com.spectrum.libraries.movie.domain.usecase.model.PagedMovieList
+import com.spectrum.libraries.movie.domain.repository.MovieRepository
+import com.spectrum.libraries.movie.domain.model.PagedMovieList
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

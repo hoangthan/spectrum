@@ -1,4 +1,4 @@
-package com.spectrum.libraries.movie.datasource.remote
+package com.spectrum.libraries.movie.datasource.remote.apiService
 
 import com.skydoves.sandwich.ApiResponse
 import com.spectrum.libraries.movie.datasource.remote.dto.GetMovieResponseDto

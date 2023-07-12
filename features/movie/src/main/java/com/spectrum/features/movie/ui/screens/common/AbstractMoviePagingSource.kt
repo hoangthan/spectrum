@@ -5,7 +5,7 @@ import androidx.paging.PagingState
 import com.spectrum.features.movie.ui.components.MovieUiModel
 import com.spectrum.features.movie.ui.components.toUiModel
 import com.spectrum.libraries.core.usecase.UseCaseResult
-import com.spectrum.libraries.movie.domain.usecase.model.PagedMovieList
+import com.spectrum.libraries.movie.domain.model.PagedMovieList
 
 abstract class AbstractMoviePagingSource : PagingSource<Int, MovieUiModel>() {
 
