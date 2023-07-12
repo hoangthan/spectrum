@@ -1,4 +1,4 @@
-package com.spectrum.features.movie.ui.screens
+package com.spectrum.features.movie.ui.screens.movieList
 
 import android.os.Bundle
 import android.view.View
@@ -13,7 +13,7 @@ import com.spectrum.features.core.utils.utils.parcelable
 import com.spectrum.features.core.utils.viewBinding
 import com.spectrum.features.movie.ui.components.MovieItemDecoration
 import com.spectrum.features.movie.ui.components.MovieListAdapter
-import com.spectrum.features.movie.ui.screens.MovieListViewModel.ViewEvent
+import com.spectrum.features.movie.ui.screens.movieList.MovieListViewModel.ViewEvent
 import dagger.hilt.android.AndroidEntryPoint
 
 

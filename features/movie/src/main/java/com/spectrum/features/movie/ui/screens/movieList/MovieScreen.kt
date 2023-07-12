@@ -1,4 +1,4 @@
-package com.spectrum.features.movie.ui.screens
+package com.spectrum.features.movie.ui.screens.movieList
 
 import android.os.Parcelable
 import com.spectrum.libraries.movie.domain.usecase.model.MovieSource

@@ -1,4 +1,4 @@
-package com.spectrum.features.movie.ui.screens
+package com.spectrum.features.movie.ui.screens.movieList
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState

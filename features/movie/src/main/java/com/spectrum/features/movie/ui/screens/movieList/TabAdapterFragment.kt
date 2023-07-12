@@ -1,4 +1,4 @@
-package com.spectrum.features.movie.ui.screens
+package com.spectrum.features.movie.ui.screens.movieList
 
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment

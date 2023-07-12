@@ -3,6 +3,7 @@ package com.spectrum.assignment
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.spectrum.features.movie.ui.screens.movieSearch.SearchFragment
 
 class HomePagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 

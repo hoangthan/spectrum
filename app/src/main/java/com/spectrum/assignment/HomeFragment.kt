@@ -5,7 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
 import com.spectrum.assignment.databinding.FragmentHomeBinding
-import com.spectrum.features.movie.ui.screens.TabAdapterFragment
+import com.spectrum.features.movie.ui.screens.movieList.TabAdapterFragment
 import com.spectrum.features.core.utils.viewBinding
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
