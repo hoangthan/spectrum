@@ -4,7 +4,7 @@ import com.spectrum.libraries.movie.domain.usecase.model.Movie
 
 
 data class MovieUiModel(
-    val id: Int,
+    val id: Long,
     val adult: Boolean?,
     val backdropPath: String?,
     val genres: List<GenresUiModel>,

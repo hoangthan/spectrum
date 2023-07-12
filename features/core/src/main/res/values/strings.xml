@@ -4,4 +4,6 @@
     <string name="upcoming">Upcoming</string>
     <string name="popular">Popular</string>
     <string name="adult_tag">18+</string>
+
+    <string name="movie_details_url">movie-app://com.spectrum.movie/details/{id}</string>
 </resources>

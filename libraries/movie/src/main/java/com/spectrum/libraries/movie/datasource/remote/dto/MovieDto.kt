@@ -16,7 +16,7 @@ data class MovieDto(
     val genreIds: List<Int?>? = null,
 
     @Json(name = "id")
-    val id: Int? = null,
+    val id: Long? = null,
 
     @Json(name = "original_language")
     val originalLanguage: String? = null,

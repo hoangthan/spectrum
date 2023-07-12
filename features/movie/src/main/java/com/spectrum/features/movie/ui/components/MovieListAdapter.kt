@@ -15,7 +15,13 @@ import com.spectrum.features.movie.ui.components.MovieListAdapter.MovieItemViewH
 import com.spectrum.features.movie.utils.ImageSourceSelector
 import com.spectrum.features.movie.utils.PosterSize
 
-class MovieListAdapter : PagingDataAdapter<MovieUiModel, MovieItemViewHolder>(movieComparator) {
+fun interface OnMovieSelected {
+    operator fun invoke(movie: MovieUiModel)
+}
+
+class MovieListAdapter constructor(
+    private val onMovieClicked: OnMovieSelected
+) : PagingDataAdapter<MovieUiModel, MovieItemViewHolder>(movieComparator) {
 
     private lateinit var inflater: LayoutInflater
 
@@ -30,28 +36,37 @@ class MovieListAdapter : PagingDataAdapter<MovieUiModel, MovieItemViewHolder>(mo
         return MovieItemViewHolder(binding)
     }
 
-    class MovieItemViewHolder constructor(
+    inner class MovieItemViewHolder constructor(
         private val binding: ItemMovieCardBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bindData(movie: MovieUiModel) {
-            val posterUrl = ImageSourceSelector.getImageUrl(movie.posterPath, PosterSize.Width342)
-
             with(binding) {
-                imgPoster.load(posterUrl)
                 tvMovieName.text = movie.title
                 chipAdult.isVisible = movie.adult ?: false
                 tvVoteAvg.text = movie.voteAverage.toString()
                 tvLanguage.text = movie.originalLanguage
                 tvReleaseDate.text = movie.releaseDate
-                chipGroupGenres.removeAllViews()
-                chipGroupContainer.isGone = movie.genres.isEmpty()
+                addGenresTag(movie)
+                loadPosterImage(movie)
+            }
 
-                movie.genres.forEach {
-                    val chip = Chip(binding.root.context, null, R.style.ChipGenresStyle)
-                    chip.text = it.name
-                    chipGroupGenres.addView(chip)
-                }
+            binding.root.setOnClickListener { onMovieClicked(movie) }
+        }
+
+        private fun loadPosterImage(movie: MovieUiModel) {
+            val posterUrl = ImageSourceSelector.getImageUrl(movie.posterPath, PosterSize.Width342)
+            binding.imgPoster.load(posterUrl)
+        }
+
+        private fun addGenresTag(movie: MovieUiModel) {
+            binding.chipGroupGenres.removeAllViews()
+            binding.chipGroupContainer.isGone = movie.genres.isEmpty()
+
+            movie.genres.forEach {
+                val chip = Chip(binding.root.context, null, R.style.ChipGenresStyle)
+                chip.text = it.name
+                binding.chipGroupGenres.addView(chip)
             }
         }
     }

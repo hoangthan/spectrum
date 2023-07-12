@@ -18,7 +18,15 @@
 
     <fragment
         android:id="@+id/movieDetails"
-        android:name="com.spectrum.assignment.MovieDetails"
-        android:label="MovieDetails" />
+        android:name="com.spectrum.features.movie.ui.screens.movieDetails.MovieDetails"
+        android:label="MovieDetails">
+
+        <argument
+            android:name="id"
+            app:argType="long" />
+
+        <deepLink app:uri="@string/movie_details_url" />
+
+    </fragment>
 
 </navigation>

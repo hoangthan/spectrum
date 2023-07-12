@@ -1,7 +1,7 @@
 package com.spectrum.libraries.movie.domain.usecase.model
 
 data class Movie(
-    val id: Int?,
+    val id: Long?,
     val adult: Boolean?,
     val backdropPath: String?,
     val genreIds: List<Int?>?,
