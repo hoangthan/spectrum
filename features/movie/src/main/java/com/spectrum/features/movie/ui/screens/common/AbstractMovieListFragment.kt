@@ -11,7 +11,6 @@ import com.spectrum.features.core.utils.utils.collectWhenCreated
 import com.spectrum.features.movie.ui.components.MovieItemDecoration
 import com.spectrum.features.movie.ui.components.MovieListAdapter
 import com.spectrum.features.movie.ui.components.MovieUiModel
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.Flow
 
 

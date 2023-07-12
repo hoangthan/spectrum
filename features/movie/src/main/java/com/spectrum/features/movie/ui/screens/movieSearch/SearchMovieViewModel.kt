@@ -4,6 +4,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.cachedIn
 import com.spectrum.features.movie.ui.screens.common.AbstractMovieListViewModel
+import com.spectrum.features.movie.ui.screens.movieSearch.SearchMovieViewModel.ViewEvent.UpdateSearchName
 import com.spectrum.libraries.movie.domain.usecase.SearchMovieUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -25,7 +26,7 @@ class SearchMovieViewModel @Inject constructor(
     private val searchMovieUseCase: SearchMovieUseCase
 ) : AbstractMovieListViewModel() {
 
-    private val searchParamState = MutableStateFlow(ViewEvent.UpdateSearchName())
+    private val searchParamState = MutableStateFlow(UpdateSearchName())
 
     private val moviePagingFlow = searchParamState
         .debounce(500)
@@ -40,7 +41,7 @@ class SearchMovieViewModel @Inject constructor(
 
     fun dispatchEvent(viewEvent: ViewEvent) {
         when (viewEvent) {
-            is ViewEvent.UpdateSearchName -> searchParamState.update { it.copy(name = viewEvent.name) }
+            is UpdateSearchName -> searchParamState.update { it.copy(name = viewEvent.name) }
         }
     }
 
