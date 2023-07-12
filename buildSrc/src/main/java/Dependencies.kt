@@ -29,4 +29,8 @@ object Deps {
     const val okhttpLogging = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp}"
 
     const val sandwich = "com.github.skydoves:sandwich:${Versions.sandwich}"
+
+    const val roomKtx = "androidx.room:room-ktx:${Versions.roomPersistent}"
+    const val roomRuntime = "androidx.room:room-runtime:${Versions.roomPersistent}"
+    const val roomCompiler = "androidx.room:room-compiler:${Versions.roomPersistent}"
 }

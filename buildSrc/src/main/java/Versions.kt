@@ -14,4 +14,5 @@ object Versions {
     const val retrofit = "2.9.0"
     const val okHttp = "5.0.0-alpha.2"
     const val sandwich = "1.3.7"
+    const val roomPersistent = "2.5.0"
 }
