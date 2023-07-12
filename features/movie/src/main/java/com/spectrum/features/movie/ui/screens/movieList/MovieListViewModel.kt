@@ -1,10 +1,9 @@
 package com.spectrum.features.movie.ui.screens.movieList
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
-import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
+import com.spectrum.features.movie.ui.screens.common.AbstractMovieListViewModel
 import com.spectrum.libraries.movie.domain.usecase.GetMovieUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -21,25 +20,21 @@ import javax.inject.Inject
 @OptIn(ExperimentalCoroutinesApi::class)
 class MovieListViewModel @Inject constructor(
     private val getMovieUseCase: GetMovieUseCase
-) : ViewModel() {
+) : AbstractMovieListViewModel() {
 
     private val filterOptionStateFlow = MutableStateFlow<MovieScreen?>(null)
 
-    private val pageConfig = PagingConfig(
-        prefetchDistance = 1,
-        pageSize = MoviePagingSource.PAGE_SIZE,
-        initialLoadSize = MoviePagingSource.PAGE_SIZE,
-    )
-
-    val moviePaging = filterOptionStateFlow
+    private val moviePagingFlow = filterOptionStateFlow
         .filterNotNull()
         .map { it.toMovieSource() }
         .flatMapLatest {
-            val pagingSource = MoviePagingSource(it, getMovieUseCase)
+            val pagingSource = MovieListPagingSource(it, getMovieUseCase)
             Pager(pageConfig) { pagingSource }.flow
         }
         .cachedIn(viewModelScope)
         .flowOn(Dispatchers.IO)
+
+    override fun getMoviePagingFlow() = moviePagingFlow
 
     fun dispatchEvent(event: ViewEvent) {
         when (event) {

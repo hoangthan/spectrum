@@ -1,19 +1,15 @@
-package com.spectrum.features.movie.ui.screens.movieList
+package com.spectrum.features.movie.ui.screens.common
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.spectrum.features.movie.ui.components.MovieUiModel
 import com.spectrum.features.movie.ui.components.toUiModel
 import com.spectrum.libraries.core.usecase.UseCaseResult
-import com.spectrum.libraries.movie.domain.usecase.GetMovieUseCase
-import com.spectrum.libraries.movie.domain.usecase.GetMovieUseCase.GetMovieParam
-import com.spectrum.libraries.movie.domain.usecase.model.MovieSource
-import kotlinx.coroutines.flow.first
+import com.spectrum.libraries.movie.domain.usecase.model.PagedMovieList
 
-class MoviePagingSource constructor(
-    private val movieSource: MovieSource,
-    private val getMovieUseCase: GetMovieUseCase,
-) : PagingSource<Int, MovieUiModel>() {
+abstract class AbstractMoviePagingSource : PagingSource<Int, MovieUiModel>() {
+
+    abstract suspend fun loadData(params: LoadParams<Int>): UseCaseResult<PagedMovieList>
 
     override fun getRefreshKey(state: PagingState<Int, MovieUiModel>): Int? {
         return state.anchorPosition?.let {
@@ -25,9 +21,8 @@ class MoviePagingSource constructor(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieUiModel> {
         val pageNumber = params.key ?: 1
-        val useCaseParam = GetMovieParam(movieSource, pageNumber)
 
-        return when (val result = getMovieUseCase.execute(useCaseParam).first()) {
+        return when (val result = loadData(params)) {
             is UseCaseResult.Failure -> {
                 LoadResult.Error(result.exception)
             }
