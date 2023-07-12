@@ -9,6 +9,7 @@ android {
     compileSdk = ConfigData.compileSdkVersion
 
     defaultConfig {
+        minSdk = ConfigData.minSdkVersion
         val apiVersion = 3
         buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/${apiVersion}/\"")
     }

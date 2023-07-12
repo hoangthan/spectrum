@@ -1,0 +1,23 @@
+<resources>
+
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash</item>
+        <item name="windowSplashScreenAnimationDuration">
+            @integer/m3_sys_motion_duration_extra_long4
+        </item>
+        <item name="postSplashScreenTheme">@style/Theme.Spectrum</item>
+    </style>
+
+    <!--Theme.Material3.DayNight.NoActionBar-->
+    <style name="Base.Theme.Spectrum" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorAccent">@color/color_primary</item>
+        <item name="colorSecondaryContainer">@color/color_secondary</item>
+        <item name="android:statusBarColor">@color/color_primary</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:fontFamily">@font/roboto</item>
+    </style>
+
+    <style name="Theme.Spectrum" parent="Base.Theme.Spectrum" />
+</resources>

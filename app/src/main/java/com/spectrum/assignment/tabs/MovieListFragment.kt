@@ -16,6 +16,7 @@ import com.spectrum.features.core.utils.utils.parcelable
 import com.spectrum.features.core.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 
+
 @AndroidEntryPoint
 class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
 

@@ -9,6 +9,10 @@ android {
     namespace = "com.spectrum.libraries.network"
     compileSdk = ConfigData.compileSdkVersion
 
+    defaultConfig {
+        minSdk = ConfigData.minSdkVersion
+    }
+
     buildFeatures {
         buildConfig = true
     }

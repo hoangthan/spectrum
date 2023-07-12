@@ -7,6 +7,10 @@ plugins {
 android {
     namespace = "com.spectrum.libraries.core"
     compileSdk = ConfigData.compileSdkVersion
+
+    defaultConfig {
+        minSdk = ConfigData.minSdkVersion
+    }
 }
 
 dependencies {
