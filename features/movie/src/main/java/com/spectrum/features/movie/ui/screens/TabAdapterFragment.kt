@@ -1,4 +1,4 @@
-package com.spectrum.assignment.tabs
+package com.spectrum.features.movie.ui.screens
 
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment

@@ -1,4 +1,4 @@
-package com.spectrum.assignment.tabs
+package com.spectrum.features.movie.ui.screens
 
 import android.os.Bundle
 import android.view.View
@@ -6,14 +6,14 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.spectrum.assignment.R
-import com.spectrum.assignment.components.MovieItemDecoration
-import com.spectrum.assignment.components.MovieListAdapter
-import com.spectrum.assignment.databinding.FragmentMovieListBinding
-import com.spectrum.assignment.tabs.MovieListViewModel.ViewEvent
+import com.spectrum.feature.movie.R
+import com.spectrum.feature.movie.databinding.FragmentMovieListBinding
 import com.spectrum.features.core.utils.utils.collectWhenCreated
 import com.spectrum.features.core.utils.utils.parcelable
 import com.spectrum.features.core.utils.viewBinding
+import com.spectrum.features.movie.ui.components.MovieItemDecoration
+import com.spectrum.features.movie.ui.components.MovieListAdapter
+import com.spectrum.features.movie.ui.screens.MovieListViewModel.ViewEvent
 import dagger.hilt.android.AndroidEntryPoint
 
 

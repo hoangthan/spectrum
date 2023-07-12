@@ -1,6 +1,7 @@
-package com.spectrum.assignment.components
+package com.spectrum.features.movie.ui.components
 
 import com.spectrum.libraries.movie.domain.usecase.model.Movie
+
 
 data class MovieUiModel(
     val id: Int,

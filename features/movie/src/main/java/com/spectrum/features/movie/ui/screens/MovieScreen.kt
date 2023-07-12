@@ -1,4 +1,4 @@
-package com.spectrum.assignment.tabs
+package com.spectrum.features.movie.ui.screens
 
 import android.os.Parcelable
 import com.spectrum.libraries.movie.domain.usecase.model.MovieSource

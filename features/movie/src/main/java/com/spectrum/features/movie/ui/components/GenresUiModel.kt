@@ -1,4 +1,4 @@
-package com.spectrum.assignment.components
+package com.spectrum.features.movie.ui.components
 
 data class GenresUiModel(
     val id: Long,

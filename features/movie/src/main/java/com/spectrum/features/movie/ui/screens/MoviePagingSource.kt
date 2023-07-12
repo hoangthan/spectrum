@@ -1,9 +1,9 @@
-package com.spectrum.assignment.tabs
+package com.spectrum.features.movie.ui.screens
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.spectrum.assignment.components.MovieUiModel
-import com.spectrum.assignment.components.toUiModel
+import com.spectrum.features.movie.ui.components.MovieUiModel
+import com.spectrum.features.movie.ui.components.toUiModel
 import com.spectrum.libraries.core.usecase.UseCaseResult
 import com.spectrum.libraries.movie.domain.usecase.GetMovieUseCase
 import com.spectrum.libraries.movie.domain.usecase.GetMovieUseCase.GetMovieParam

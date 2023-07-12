@@ -1,4 +1,4 @@
-package com.spectrum.assignment.components
+package com.spectrum.features.movie.ui.components
 
 import android.graphics.Rect
 import android.view.View

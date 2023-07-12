@@ -1,4 +1,4 @@
-package com.spectrum.assignment.components
+package com.spectrum.features.movie.ui.components
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,12 +8,12 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.ImageSourceSelector
-import com.PosterSize
 import com.google.android.material.chip.Chip
-import com.spectrum.assignment.R
-import com.spectrum.assignment.components.MovieListAdapter.MovieItemViewHolder
-import com.spectrum.assignment.databinding.ItemMovieCardBinding
+import com.spectrum.feature.movie.R
+import com.spectrum.feature.movie.databinding.ItemMovieCardBinding
+import com.spectrum.features.movie.ui.components.MovieListAdapter.MovieItemViewHolder
+import com.spectrum.features.movie.utils.ImageSourceSelector
+import com.spectrum.features.movie.utils.PosterSize
 
 class MovieListAdapter : PagingDataAdapter<MovieUiModel, MovieItemViewHolder>(movieComparator) {
 

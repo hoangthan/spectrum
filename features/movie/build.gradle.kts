@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("com.google.dagger.hilt.android")
+    id("kotlin-parcelize")
     kotlin("kapt")
 }
 
@@ -34,6 +35,7 @@ dependencies {
     api(Deps.viewmodelViewModelState)
 
     implementation(project(":features:core"))
+    implementation(project(":libraries:movie"))
     implementation(Deps.hiltAndroid)
     kapt(Deps.hiltCompiler)
 }
