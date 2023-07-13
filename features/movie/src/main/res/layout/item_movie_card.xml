@@ -79,18 +79,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawablePadding="@dimen/padding_medium"
+                android:fontFamily="@font/roboto_condensed_bold"
                 android:maxLines="1"
                 android:textAlignment="viewStart"
                 app:drawableStartCompat="@drawable/ic_star_light"
+                android:gravity="center_vertical"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="@string/place_holder" />
 
             <TextView
+                android:gravity="center_vertical"
                 android:id="@+id/tvReleaseDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawablePadding="@dimen/padding_medium"
+                android:fontFamily="@font/roboto_condensed_bold"
                 app:drawableStartCompat="@drawable/ic_date"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tvVoteAvg"
@@ -99,8 +103,10 @@
             <TextView
                 android:id="@+id/tvLanguage"
                 android:layout_width="wrap_content"
+                android:gravity="center_vertical"
                 android:layout_height="wrap_content"
                 android:drawablePadding="@dimen/padding_medium"
+                android:fontFamily="@font/roboto_condensed_bold"
                 android:textAllCaps="true"
                 app:drawableStartCompat="@drawable/ic_language"
                 app:layout_constraintEnd_toStartOf="@+id/tvReleaseDate"
