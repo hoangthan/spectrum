@@ -1,6 +1,6 @@
 package com.spectrum.features.movie.utils
 
-enum class PosterSize(val path: String) {
+enum class ImageSize(val path: String) {
     Width92("w92"),
     Width154("w154"),
     Width185("w185"),
@@ -14,7 +14,7 @@ object ImageSourceSelector {
 
     private const val IMAGE_BASE_URL = "https://image.tmdb.org/t/p"
 
-    fun getImageUrl(path: String?, size: PosterSize): String? {
+    fun getImageUrl(path: String?, size: ImageSize): String? {
         path ?: return null
         return "$IMAGE_BASE_URL/${size.path}$path"
     }

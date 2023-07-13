@@ -13,7 +13,7 @@ import com.spectrum.feature.movie.R
 import com.spectrum.feature.movie.databinding.ItemMovieCardBinding
 import com.spectrum.features.movie.ui.components.MovieListAdapter.MovieItemViewHolder
 import com.spectrum.features.movie.utils.ImageSourceSelector
-import com.spectrum.features.movie.utils.PosterSize
+import com.spectrum.features.movie.utils.ImageSize
 import com.spectrum.features.core.R as CoreR
 
 fun interface OnMovieSelected {
@@ -56,7 +56,7 @@ class MovieListAdapter constructor(
         }
 
         private fun loadPosterImage(movie: MovieUiModel) {
-            val posterUrl = ImageSourceSelector.getImageUrl(movie.posterPath, PosterSize.Width342)
+            val posterUrl = ImageSourceSelector.getImageUrl(movie.posterPath, ImageSize.Width500)
             binding.imgPoster.load(posterUrl) {
                 placeholder(CoreR.drawable.ic_loading)
             }

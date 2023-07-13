@@ -8,6 +8,10 @@ android {
     namespace = "com.spectrum.features.core"
     compileSdk = ConfigData.compileSdkVersion
 
+    defaultConfig {
+        minSdk = ConfigData.minSdkVersion
+    }
+
     buildFeatures {
         viewBinding = true
     }

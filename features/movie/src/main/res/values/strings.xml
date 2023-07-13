@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="place_holder">Spectrum</string>
+    <string name="long_place_holder">When a headstrong street orphan, Seiya, in search of his abducted sister unwittingly taps into hidden powers, he discovers he might be the only person alive who can protect a reincarnated goddess, sent to watch over humanity. Can he let his past go and embrace his destiny to become a Knight of the Zodiac?</string>
     <string name="enter_movie_name">Enter movie name</string>
+    <string name="overview">Overview</string>
+    <string name="genres">Genres</string>
+    <string name="spoken_lang">Spoken Language</string>
+    <string name="information">Information</string>
+    <string name="rating">Rating</string>
+    <string name="publish_date">Publish Date</string>
 </resources>

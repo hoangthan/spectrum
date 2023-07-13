@@ -85,7 +85,7 @@ fun MovieDetailsDto.toDomain(): MovieDetails {
         adult = adult,
         backdropPath = backdropPath,
         budget = budget,
-        genres = genres?.filterNotNull()?.mapNotNull { it.toDomain() } ?: listOf(),
+        genres = genres?.filterNotNull()?.mapNotNull { it.toDomain() } ?: emptyList(),
         homepage = homepage,
         id = id,
         imdbId = imdbId,
@@ -103,5 +103,6 @@ fun MovieDetailsDto.toDomain(): MovieDetails {
         video = video,
         voteAverage = voteAverage,
         voteCount = voteCount,
+        spokenLanguages = spokenLanguages?.mapNotNull { it?.englishName } ?: emptyList(),
     )
 }

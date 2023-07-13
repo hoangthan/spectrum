@@ -17,7 +17,7 @@ data class MovieDetails(
     val releaseDate: String?,
     val revenue: Int?,
     val runtime: Int?,
-    val spokenLanguages: List<String> = listOf(),
+    val spokenLanguages: List<String>,
     val status: String?,
     val tagline: String?,
     val title: String?,
