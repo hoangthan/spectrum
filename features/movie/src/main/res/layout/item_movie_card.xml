@@ -27,11 +27,13 @@
             android:id="@+id/chipGroupContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clipToPadding="false"
             android:paddingHorizontal="@dimen/padding_regular"
             android:paddingVertical="@dimen/padding_medium"
-            tools:visibility="gone"
+            android:scrollbars="none"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvMovieName">
+            app:layout_constraintTop_toBottomOf="@id/tvMovieName"
+            tools:visibility="gone">
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chipGroupGenres"
