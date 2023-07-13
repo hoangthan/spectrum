@@ -15,3 +15,10 @@ fun <T, U> UseCaseResult<T>.mapSuccess(converter: (T) -> U): UseCaseResult<U> {
         is UseCaseResult.Success -> converter(data).asSuccessResult()
     }
 }
+
+suspend fun <T, U> UseCaseResult<T>.mapSuccessSuspend(converter: suspend (T) -> U): UseCaseResult<U> {
+    return when (this) {
+        is UseCaseResult.Failure -> this
+        is UseCaseResult.Success -> converter(data).asSuccessResult()
+    }
+}

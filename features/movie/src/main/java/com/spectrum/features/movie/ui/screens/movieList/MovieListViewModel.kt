@@ -31,8 +31,8 @@ class MovieListViewModel @Inject constructor(
             val pagingSource = MovieListPagingSource(it, getMovieUseCase)
             Pager(pageConfig) { pagingSource }.flow
         }
-        .cachedIn(viewModelScope)
         .flowOn(Dispatchers.IO)
+        .cachedIn(viewModelScope)
 
     override fun getMoviePagingFlow() = moviePagingFlow
 

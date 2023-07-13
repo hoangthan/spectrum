@@ -64,6 +64,7 @@ fun MovieDto.toDomain(): Movie {
         video = video,
         voteAverage = voteAverage,
         voteCount = voteCount,
-        genres = listOf(),
+        genresIds = genreIds?.filterNotNull() ?: emptyList(),
+        genres = emptyList(),
     )
 }

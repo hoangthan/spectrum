@@ -20,6 +20,7 @@
             <option value="$PROJECT_DIR$/libraries/core" />
             <option value="$PROJECT_DIR$/libraries/movie" />
             <option value="$PROJECT_DIR$/libraries/network" />
+            <option value="$PROJECT_DIR$/libraries/persistence" />
           </set>
         </option>
       </GradleProjectSettings>

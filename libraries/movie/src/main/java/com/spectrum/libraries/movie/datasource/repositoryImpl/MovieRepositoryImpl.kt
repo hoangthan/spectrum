@@ -5,7 +5,6 @@ import com.spectrum.libraries.core.usecase.UseCaseResult
 import com.spectrum.libraries.movie.datasource.remote.apiService.MovieApiService
 import com.spectrum.libraries.movie.datasource.remote.dto.toDomain
 import com.spectrum.libraries.movie.datasource.remote.dto.toPagedMoveList
-import com.spectrum.libraries.movie.domain.model.Genres
 import com.spectrum.libraries.movie.domain.model.MovieDetails
 import com.spectrum.libraries.movie.domain.model.MovieSource
 import com.spectrum.libraries.movie.domain.model.PagedMovieList
@@ -14,10 +13,8 @@ import com.spectrum.libraries.network.utils.toUseCaseResult
 import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(
-    private val movieApiService: MovieApiService
+    private val movieApiService: MovieApiService,
 ) : MovieRepository {
-
-    private val genresMap = mutableMapOf<Int, Genres>()
 
     override suspend fun getLiveMovies(
         type: MovieSource,
@@ -40,21 +37,21 @@ class MovieRepositoryImpl @Inject constructor(
             .mapSuccess { toDomain() }
             .toUseCaseResult()
     }
+}
 
-    private sealed class SourcePath(val path: String) {
-        object Upcoming : SourcePath("upcoming")
-        object Popular : SourcePath("popular")
-        object TopRated : SourcePath("top_rated")
-        object NowPlaying : SourcePath("now_playing")
+private sealed class SourcePath(val path: String) {
+    object Upcoming : SourcePath("upcoming")
+    object Popular : SourcePath("popular")
+    object TopRated : SourcePath("top_rated")
+    object NowPlaying : SourcePath("now_playing")
 
-        companion object {
-            fun fromMovieType(type: MovieSource): SourcePath {
-                return when (type) {
-                    MovieSource.Popular -> Popular
-                    MovieSource.TopRated -> TopRated
-                    MovieSource.Upcoming -> Upcoming
-                    MovieSource.NowPlaying -> NowPlaying
-                }
+    companion object {
+        fun fromMovieType(type: MovieSource): SourcePath {
+            return when (type) {
+                MovieSource.Popular -> Popular
+                MovieSource.TopRated -> TopRated
+                MovieSource.Upcoming -> Upcoming
+                MovieSource.NowPlaying -> NowPlaying
             }
         }
     }

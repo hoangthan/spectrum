@@ -1,17 +1,17 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("com.google.dagger.hilt.android")
     kotlin("kapt")
 }
 
+
 android {
-    namespace = "com.spectrum.libraries.movie"
+    namespace = "com.spectrum.libraries.persistence"
     compileSdk = ConfigData.compileSdkVersion
 
     defaultConfig {
         minSdk = ConfigData.minSdkVersion
-        val apiVersion = 3
-        buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/${apiVersion}/\"")
     }
 
     buildFeatures {
@@ -20,11 +20,10 @@ android {
 }
 
 dependencies {
-    implementation(project(":libraries:core"))
-    implementation(project(":libraries:network"))
-    implementation(project(":libraries:persistence"))
-
     implementation(Deps.hiltAndroid)
     kapt(Deps.hiltCompiler)
-    kapt(Deps.moshiCodegen)
+
+    implementation(Deps.roomKtx)
+    implementation(Deps.roomRuntime)
+    kapt(Deps.roomCompiler)
 }
