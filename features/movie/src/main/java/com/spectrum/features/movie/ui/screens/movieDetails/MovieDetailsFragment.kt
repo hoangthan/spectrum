@@ -12,7 +12,9 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.spectrum.feature.movie.R
 import com.spectrum.feature.movie.databinding.FragmentMovieDetailsBinding
+import com.spectrum.features.core.utils.utils.collectWhenResumed
 import com.spectrum.features.core.utils.utils.collectWhenStarted
+import com.spectrum.features.core.utils.utils.showMessage
 import com.spectrum.features.core.utils.viewBinding
 import com.spectrum.features.movie.ui.components.MovieDetailsUiModel
 import com.spectrum.features.movie.ui.screens.movieDetails.MovieDetailsViewModel.ViewEvent
@@ -50,6 +52,8 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
         viewModel.favState.collectWhenStarted(viewLifecycleOwner) {
             bindFavouriteStatus(it)
         }
+
+        viewModel.error.collectWhenResumed(viewLifecycleOwner, ::showMessage)
     }
 
     private fun initViewListener() {
@@ -84,11 +88,7 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
             tvTagLine.text = details.tagline
             tvTagLine.isGone = details.tagline.isNullOrBlank()
 
-            tvReleaseDate.text = DateTimeUtils.transformFormat(
-                details.releaseDate,
-                DateTimeUtils.PATTERN_YMD,
-                DateTimeUtils.PATTERN_DMY,
-            )
+            tvReleaseDate.text = details.releaseDate
 
             tvVoteCount.text = getString(
                 R.string.vote_rate,

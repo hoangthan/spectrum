@@ -43,6 +43,7 @@ class MovieDetailsViewModel @Inject constructor(
 
     val movieDetailsState = movieIdState
         .flatMapLatest { getMovieDetails.execute(GetMovieDetailsParam(it)) }
+        .onEach { if (it is UseCaseResult.Failure) _error.send(it.exception.toString()) }
         .mapNotNull { result -> result as? UseCaseResult.Success<MovieDetails> }
         .map { it.data.toUi() }
         .onEach { movieDetails = it }
