@@ -1,5 +1,6 @@
 package com.spectrum.features.movie.ui.components
 
+import com.spectrum.libraries.core.utils.DateTimeUtils
 import com.spectrum.libraries.movie.domain.model.Movie
 
 
@@ -31,7 +32,11 @@ fun Movie.toUiModel(): MovieUiModel {
         overview = overview,
         popularity = popularity,
         posterPath = posterPath,
-        releaseDate = releaseDate,
+        releaseDate = DateTimeUtils.transformFormat(
+            releaseDate,
+            DateTimeUtils.PATTERN_YMD,
+            DateTimeUtils.PATTERN_DMY
+        ),
         title = title,
         video = video,
         voteAverage = voteAverage,

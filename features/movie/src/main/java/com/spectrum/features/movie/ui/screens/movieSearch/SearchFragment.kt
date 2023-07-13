@@ -20,6 +20,8 @@ class SearchFragment : AbstractMovieListFragment(R.layout.fragment_search_movie)
 
     override fun getMoviePagingFlow() = viewModel.getMoviePagingFlow()
 
+    override fun getLoadingView() = binding.loadingView
+
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
 

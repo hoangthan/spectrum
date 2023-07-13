@@ -14,7 +14,6 @@ import com.spectrum.feature.movie.databinding.ItemMovieCardBinding
 import com.spectrum.features.movie.ui.components.MovieListAdapter.MovieItemViewHolder
 import com.spectrum.features.movie.utils.ImageSize
 import com.spectrum.features.movie.utils.ImageSourceSelector
-import com.spectrum.libraries.core.utils.DateTimeUtils
 import com.spectrum.features.core.R as CoreR
 
 fun interface OnMovieSelected {
@@ -48,11 +47,7 @@ class MovieListAdapter constructor(
                 chipAdult.isVisible = movie.adult ?: false
                 tvVoteAvg.text = movie.voteAverage.toString()
                 tvLanguage.text = movie.originalLanguage
-                tvReleaseDate.text = DateTimeUtils.transformFormat(
-                    movie.releaseDate,
-                    DateTimeUtils.PATTERN_YMD,
-                    DateTimeUtils.PATTERN_DMY
-                )
+                tvReleaseDate.text = movie.releaseDate
                 addGenresTag(movie)
                 loadPosterImage(movie)
             }
