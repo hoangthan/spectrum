@@ -12,8 +12,9 @@ import com.google.android.material.chip.Chip
 import com.spectrum.feature.movie.R
 import com.spectrum.feature.movie.databinding.ItemMovieCardBinding
 import com.spectrum.features.movie.ui.components.MovieListAdapter.MovieItemViewHolder
-import com.spectrum.features.movie.utils.ImageSourceSelector
 import com.spectrum.features.movie.utils.ImageSize
+import com.spectrum.features.movie.utils.ImageSourceSelector
+import com.spectrum.libraries.core.utils.DateTimeUtils
 import com.spectrum.features.core.R as CoreR
 
 fun interface OnMovieSelected {
@@ -47,7 +48,11 @@ class MovieListAdapter constructor(
                 chipAdult.isVisible = movie.adult ?: false
                 tvVoteAvg.text = movie.voteAverage.toString()
                 tvLanguage.text = movie.originalLanguage
-                tvReleaseDate.text = movie.releaseDate
+                tvReleaseDate.text = DateTimeUtils.transformFormat(
+                    movie.releaseDate,
+                    DateTimeUtils.PATTERN_YMD,
+                    DateTimeUtils.PATTERN_DMY
+                )
                 addGenresTag(movie)
                 loadPosterImage(movie)
             }

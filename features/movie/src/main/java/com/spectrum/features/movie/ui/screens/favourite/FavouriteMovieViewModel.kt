@@ -9,7 +9,9 @@ import com.spectrum.libraries.movie.domain.model.Movie
 import com.spectrum.libraries.movie.domain.usecase.GetFavouriteMovieUseCase
 import com.spectrum.libraries.movie.domain.usecase.GetFavouriteMovieUseCase.QueryType
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull
 import javax.inject.Inject
@@ -23,8 +25,9 @@ class FavouriteMovieViewModel @Inject constructor(
         return getFavMovieUseCase.execute(QueryType.All)
             .mapNotNull { result ->
                 val movies = result as? Success<List<Movie>>
-                movies?.data?.mapNotNull { it.toUiModel() }
+                movies?.data?.map { it.toUiModel() }
             }
             .map { PagingData.from(it) }
+            .flowOn(Dispatchers.IO)
     }
 }

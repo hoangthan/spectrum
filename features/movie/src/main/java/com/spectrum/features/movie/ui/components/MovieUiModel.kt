@@ -20,11 +20,9 @@ data class MovieUiModel(
     val voteCount: Int?,
 )
 
-fun Movie.toUiModel(): MovieUiModel? {
-    id ?: return null //Do not allow if the unique field is null
-
+fun Movie.toUiModel(): MovieUiModel {
     return MovieUiModel(
-        id = id!!,
+        id = id,
         adult = adult,
         backdropPath = backdropPath,
         genres = genres.map { it.toUiModel() },

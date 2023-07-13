@@ -18,6 +18,7 @@ import com.spectrum.features.movie.ui.components.MovieDetailsUiModel
 import com.spectrum.features.movie.ui.screens.movieDetails.MovieDetailsViewModel.ViewEvent
 import com.spectrum.features.movie.utils.ImageSize
 import com.spectrum.features.movie.utils.ImageSourceSelector
+import com.spectrum.libraries.core.utils.DateTimeUtils
 import dagger.hilt.android.AndroidEntryPoint
 import com.spectrum.features.core.R as coreR
 
@@ -78,12 +79,19 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
             tvOverView.text = details.overview
             tvTagLine.text = details.tagline
             tvTagLine.isGone = details.tagline.isNullOrBlank()
-            tvReleaseDate.text = details.releaseDate
+
+            tvReleaseDate.text = DateTimeUtils.transformFormat(
+                details.releaseDate,
+                DateTimeUtils.PATTERN_YMD,
+                DateTimeUtils.PATTERN_DMY,
+            )
+
             tvVoteCount.text = getString(
                 R.string.vote_rate,
                 details.voteAverage?.toString(),
                 details.voteCount?.toString(),
             )
+
             addChipToGroup(binding.chipGroupGenres, details.genres.map { it.name })
             addChipToGroup(binding.chipSpokenLanguage, details.spokenLanguages)
         }
