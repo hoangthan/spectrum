@@ -15,16 +15,20 @@ import javax.inject.Singleton
 @Singleton
 class GetMovieUseCase @Inject constructor(
     private val movieRepository: MovieRepository,
-    private val movieAttachInfoUseCase: MovieAttachInfoUseCase,
+    private val movieAttached: MovieAttachInfoUseCase,
 ) : FlowUseCase<GetMovieParam, PagedMovieList> {
 
     override fun execute(param: GetMovieParam): Flow<UseCaseResult<PagedMovieList>> {
         return flow {
-            val movieResult = movieRepository.getLiveMovies(param.movieSource, param.page)
+            val movieResult = movieRepository
+                .getLiveMovies(param.movieSource, param.page)
                 .mapSuccessSuspend { pagedMovieList ->
-                    val attachedGenresMovies = pagedMovieList.movies.map { movieAttachInfoUseCase.attachGenresToMovie(it) }
+                    val attachedGenresMovies = pagedMovieList.movies.map {
+                        movieAttached.attachGenresToMovie(it)
+                    }
                     pagedMovieList.copy(movies = attachedGenresMovies)
                 }
+
             emit(movieResult)
         }
     }
