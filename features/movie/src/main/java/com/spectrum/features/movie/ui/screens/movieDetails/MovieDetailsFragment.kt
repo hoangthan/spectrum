@@ -88,7 +88,11 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
             tvTagLine.text = details.tagline
             tvTagLine.isGone = details.tagline.isNullOrBlank()
 
-            tvReleaseDate.text = details.releaseDate
+            tvReleaseDate.text = DateTimeUtils.transformFormat(
+                details.releaseDate,
+                DateTimeUtils.PATTERN_YMD,
+                DateTimeUtils.PATTERN_DMY,
+            )
 
             tvVoteCount.text = getString(
                 R.string.vote_rate,
