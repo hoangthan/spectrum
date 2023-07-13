@@ -14,6 +14,8 @@ class FavouriteMovieFragment : AbstractMovieListFragment(R.layout.fragment_movie
     private val viewModel: FavouriteMovieViewModel by viewModels()
     private val binding by viewBinding(FragmentMovieListBinding::bind)
 
+    override fun getLoadingView() = binding.loadingView
+
     override fun getRecyclerView(): RecyclerView = binding.rcvMovieList
 
     override fun getEmptyView() = binding.emptyView

@@ -74,7 +74,11 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
         details ?: return
         with(binding) {
             val imageUrl = ImageSourceSelector.getImageUrl(details.backdropPath, ImageSize.Original)
-            imgBackdrop.load(imageUrl) { placeholder(coreR.drawable.ic_loading) }
+            imgBackdrop.load(imageUrl) {
+                placeholder(coreR.drawable.ic_loading)
+                error(coreR.drawable.ic_broken)
+            }
+
             tvMovieName.text = details.title
             tvOverView.text = details.overview
             tvTagLine.text = details.tagline

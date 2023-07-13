@@ -28,9 +28,10 @@ abstract class AbstractMoviePagingSource : PagingSource<Int, MovieUiModel>() {
             }
 
             is UseCaseResult.Success -> {
-                val movies = result.data.movies.mapNotNull { it.toUiModel() }
+                val movies = result.data.movies.map { it.toUiModel() }
                 val prevKey = if (pageNumber == 1) null else pageNumber - 1
-                val nextKey = if (pageNumber <= result.data.totalPages) pageNumber + 1 else null
+                val shouldStopLoad = pageNumber >= result.data.totalPages || movies.isEmpty()
+                val nextKey = if (shouldStopLoad) null else pageNumber + 1
                 LoadResult.Page(data = movies, prevKey = prevKey, nextKey = nextKey)
             }
         }

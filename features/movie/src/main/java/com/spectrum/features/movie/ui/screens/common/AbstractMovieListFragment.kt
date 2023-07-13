@@ -31,8 +31,12 @@ abstract class AbstractMovieListFragment(@LayoutRes layoutId: Int) : Fragment(la
 
     private var _movieAdapter: MovieListAdapter? = null
     private val movieAdapter: MovieListAdapter
-        get() = if (_movieAdapter == null) MovieListAdapter(::openMovieDetails).also { _movieAdapter = it }
-        else _movieAdapter!!
+        get() {
+            _movieAdapter ?: run {
+                _movieAdapter = MovieListAdapter(::openMovieDetails)
+            }
+            return _movieAdapter!!
+        }
 
     private val _loadingView: View?
         get() = getLoadingView()
@@ -51,6 +55,12 @@ abstract class AbstractMovieListFragment(@LayoutRes layoutId: Int) : Fragment(la
 
     abstract fun getMoviePagingFlow(): Flow<PagingData<MovieUiModel>>
 
+    protected open fun shouldShowEmptyView(loadState: CombinedLoadStates): Boolean {
+        return loadState.source.refresh is LoadState.NotLoading &&
+                loadState.append.endOfPaginationReached &&
+                movieAdapter.itemCount < 1
+    }
+
     protected open fun onLoadStateUpdated(loadState: CombinedLoadStates) {
         when (val refresh = loadState.refresh) {
             is LoadState.Loading -> _loadingView?.isVisible = true
@@ -58,11 +68,7 @@ abstract class AbstractMovieListFragment(@LayoutRes layoutId: Int) : Fragment(la
             is LoadState.Error -> showMessage(refresh.error.message)
         }
 
-        val isDataEmpty = loadState.source.refresh is LoadState.NotLoading &&
-                loadState.append.endOfPaginationReached &&
-                movieAdapter.itemCount < 1
-
-        _emptyView?.isVisible = isDataEmpty
+        _emptyView?.isVisible = shouldShowEmptyView(loadState)
     }
 
     protected fun showMessage(message: String?, duration: Int = 2000) {

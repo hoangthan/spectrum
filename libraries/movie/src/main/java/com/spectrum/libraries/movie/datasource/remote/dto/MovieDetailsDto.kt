@@ -47,7 +47,7 @@ data class MovieDetailsDto(
     val releaseDate: String? = null,
 
     @Json(name = "revenue")
-    val revenue: Int? = null,
+    val revenue: Long? = null,
 
     @Json(name = "runtime")
     val runtime: Int? = null,

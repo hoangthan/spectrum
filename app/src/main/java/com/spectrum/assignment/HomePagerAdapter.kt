@@ -4,13 +4,13 @@ import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.spectrum.features.movie.ui.screens.favourite.FavouriteMovieFragment
-import com.spectrum.features.movie.ui.screens.movieSearch.SearchFragment
+import com.spectrum.features.movie.ui.screens.movieSearch.SearchMovieFragment
 
 class HomePagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
     private val screens = listOf(
         Screen(HomeFragment(), 0, R.id.actionHome),
-        Screen(SearchFragment(), 1, R.id.actionSearch),
+        Screen(SearchMovieFragment(), 1, R.id.actionSearch),
         Screen(FavouriteMovieFragment(), 2, R.id.actionFavourite),
     )
 

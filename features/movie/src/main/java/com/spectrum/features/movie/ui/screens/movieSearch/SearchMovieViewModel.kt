@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
@@ -29,9 +30,10 @@ class SearchMovieViewModel @Inject constructor(
     private val searchParamState = MutableStateFlow(UpdateSearchName())
 
     private val moviePagingFlow = searchParamState
-        .debounce(500)
+        .debounce(KEYWORD_DEBOUNCE_TIME)
+        .mapNotNull { it.name }
         .flatMapLatest {
-            val pagingSource = SearchMoviePagingSource(it.name, searchMovieUseCase)
+            val pagingSource = SearchMoviePagingSource(it, searchMovieUseCase)
             Pager(pageConfig) { pagingSource }.flow
         }
         .cachedIn(viewModelScope)
@@ -46,6 +48,10 @@ class SearchMovieViewModel @Inject constructor(
     }
 
     sealed interface ViewEvent {
-        data class UpdateSearchName(val name: String = "") : ViewEvent
+        data class UpdateSearchName(val name: String? = null) : ViewEvent
+    }
+
+    companion object {
+        const val KEYWORD_DEBOUNCE_TIME = 500L
     }
 }
