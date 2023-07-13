@@ -17,6 +17,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull
@@ -35,6 +36,9 @@ class MovieDetailsViewModel @Inject constructor(
     private val getFavMovie: GetFavouriteMovieUseCase,
 ) : ViewModel() {
 
+    private val _loadingState = MutableStateFlow(false)
+    val loadingState = _loadingState.asStateFlow()
+
     private val _error = Channel<String>()
     val error = _error.receiveAsFlow()
 
@@ -42,7 +46,9 @@ class MovieDetailsViewModel @Inject constructor(
     private val movieIdState = MutableStateFlow<Long>(0)
 
     val movieDetailsState = movieIdState
+        .onEach { _loadingState.update { true } }
         .flatMapLatest { getMovieDetails.execute(GetMovieDetailsParam(it)) }
+        .onEach { _loadingState.update { false } }
         .onEach { if (it is UseCaseResult.Failure) _error.send(it.exception.toString()) }
         .mapNotNull { result -> result as? UseCaseResult.Success<MovieDetails> }
         .map { it.data.toUi() }
