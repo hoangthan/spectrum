@@ -28,7 +28,6 @@ class MovieListFragment : AbstractMovieListFragment(R.layout.fragment_movie_list
 
     override fun getMoviePagingFlow() = viewModel.getMoviePagingFlow()
 
-
     companion object {
         private const val movieTypeKey = "MovieType"
         fun newInstance(movieType: MovieScreen): MovieListFragment {

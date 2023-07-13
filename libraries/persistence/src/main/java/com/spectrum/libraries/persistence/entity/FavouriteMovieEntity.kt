@@ -1,10 +1,17 @@
-package com.spectrum.libraries.movie.domain.model
+package com.spectrum.libraries.persistence.entity
 
-data class Movie(
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+import com.spectrum.libraries.persistence.converter.IntListConverter
+
+@Entity(tableName = "favourite_movie")
+@TypeConverters(IntListConverter::class)
+data class FavouriteMovieEntity(
+    @PrimaryKey
     val id: Long,
     val adult: Boolean?,
     val backdropPath: String?,
-    val genres: List<Genres>,
     val genresIds: List<Int>,
     val originalLanguage: String?,
     val originalTitle: String?,

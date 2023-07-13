@@ -4,12 +4,12 @@ import com.spectrum.libraries.movie.domain.model.Genres
 import com.spectrum.libraries.movie.domain.model.MovieDetails
 
 data class MovieDetailsUiModel(
+    val id: Long,
     val adult: Boolean?,
     val backdropPath: String?,
     val budget: Int?,
     val genres: List<Genres>,
     val homepage: String?,
-    val id: Int?,
     val imdbId: String?,
     val originalLanguage: String?,
     val originalTitle: String?,

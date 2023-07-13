@@ -6,8 +6,6 @@ import com.spectrum.features.movie.ui.components.MovieUiModel
 import com.spectrum.features.movie.ui.components.toUiModel
 import com.spectrum.libraries.core.usecase.UseCaseResult
 import com.spectrum.libraries.movie.domain.model.PagedMovieList
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 abstract class AbstractMoviePagingSource : PagingSource<Int, MovieUiModel>() {
 
@@ -23,11 +21,8 @@ abstract class AbstractMoviePagingSource : PagingSource<Int, MovieUiModel>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieUiModel> {
         val pageNumber = params.key ?: 1
-        val result = withContext(Dispatchers.IO) {
-            loadData(params)
-        }
 
-        return when (result) {
+        return when (val result = loadData(params)) {
             is UseCaseResult.Failure -> {
                 LoadResult.Error(result.exception)
             }

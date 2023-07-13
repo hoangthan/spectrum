@@ -8,11 +8,8 @@ import com.spectrum.libraries.persistence.entity.GenreEntity
 @Dao
 interface GenreDao {
     @Query("SELECT * FROM genre")
-    fun getAll(): List<GenreEntity>
+    suspend fun getAll(): List<GenreEntity>
 
     @Insert
-    fun insert(vararg users: GenreEntity)
-
-    @Query("SELECT * FROM genre WHERE id IN (:id)")
-    fun loadAllByIds(id: IntArray): List<GenreEntity>
+    suspend fun insert(vararg genres: GenreEntity)
 }

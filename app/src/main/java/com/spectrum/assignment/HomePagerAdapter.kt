@@ -3,6 +3,7 @@ package com.spectrum.assignment
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.spectrum.features.movie.ui.screens.favourite.FavouriteMovieFragment
 import com.spectrum.features.movie.ui.screens.movieSearch.SearchFragment
 
 class HomePagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
@@ -10,7 +11,7 @@ class HomePagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
     private val screens = listOf(
         Screen(HomeFragment(), 0, R.id.actionHome),
         Screen(SearchFragment(), 1, R.id.actionSearch),
-        Screen(FavouriteFragment(), 2, R.id.actionFavourite),
+        Screen(FavouriteMovieFragment(), 2, R.id.actionFavourite),
     )
 
     fun getIndex(@IdRes actionId: Int) = screens.firstOrNull { it.actionId == actionId }?.index

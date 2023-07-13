@@ -37,21 +37,21 @@ class MovieRepositoryImpl @Inject constructor(
             .mapSuccess { toDomain() }
             .toUseCaseResult()
     }
-}
 
-private sealed class SourcePath(val path: String) {
-    object Upcoming : SourcePath("upcoming")
-    object Popular : SourcePath("popular")
-    object TopRated : SourcePath("top_rated")
-    object NowPlaying : SourcePath("now_playing")
+    private sealed class SourcePath(val path: String) {
+        object Upcoming : SourcePath("upcoming")
+        object Popular : SourcePath("popular")
+        object TopRated : SourcePath("top_rated")
+        object NowPlaying : SourcePath("now_playing")
 
-    companion object {
-        fun fromMovieType(type: MovieSource): SourcePath {
-            return when (type) {
-                MovieSource.Popular -> Popular
-                MovieSource.TopRated -> TopRated
-                MovieSource.Upcoming -> Upcoming
-                MovieSource.NowPlaying -> NowPlaying
+        companion object {
+            fun fromMovieType(type: MovieSource): SourcePath {
+                return when (type) {
+                    MovieSource.Popular -> Popular
+                    MovieSource.TopRated -> TopRated
+                    MovieSource.Upcoming -> Upcoming
+                    MovieSource.NowPlaying -> NowPlaying
+                }
             }
         }
     }

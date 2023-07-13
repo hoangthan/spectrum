@@ -2,6 +2,7 @@ package com.spectrum.libraries.persistence
 
 import android.content.Context
 import androidx.room.Room
+import com.spectrum.libraries.persistence.dao.FavouriteMovieDao
 import com.spectrum.libraries.persistence.dao.GenreDao
 import dagger.Module
 import dagger.Provides
@@ -28,4 +29,8 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun provideGenreDao(appDb: AppDatabase): GenreDao = appDb.genreDao()
+
+    @Provides
+    @Singleton
+    fun provideFavMovieDao(appDb: AppDatabase): FavouriteMovieDao = appDb.favMovieDao()
 }

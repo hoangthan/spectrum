@@ -1,7 +1,9 @@
 package com.spectrum.libraries.movie.datasource
 
+import com.spectrum.libraries.movie.datasource.repositoryImpl.FavouriteMovieRepositoryImpl
 import com.spectrum.libraries.movie.datasource.repositoryImpl.GenresRepositoryImpl
 import com.spectrum.libraries.movie.datasource.repositoryImpl.MovieRepositoryImpl
+import com.spectrum.libraries.movie.domain.repository.FavouriteMovieRepository
 import com.spectrum.libraries.movie.domain.repository.GenresRepository
 import com.spectrum.libraries.movie.domain.repository.MovieRepository
 import dagger.Binds
@@ -22,4 +24,8 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindGenresRepo(impl: GenresRepositoryImpl): GenresRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindFavMovieRepo(impl: FavouriteMovieRepositoryImpl): FavouriteMovieRepository
 }

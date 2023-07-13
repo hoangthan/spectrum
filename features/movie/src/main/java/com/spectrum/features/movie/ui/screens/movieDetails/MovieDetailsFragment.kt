@@ -2,6 +2,7 @@ package com.spectrum.features.movie.ui.screens.movieDetails
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -23,12 +24,14 @@ import com.spectrum.features.core.R as coreR
 @AndroidEntryPoint
 class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
 
+    private var isFavourite = false
+    private var movieId: Long = Long.MIN_VALUE
     private val viewModel by viewModels<MovieDetailsViewModel>()
     private val binding by viewBinding(FragmentMovieDetailsBinding::bind)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val movieId = requireArguments().getLong(MOVIE_ID_KEY)
+        movieId = requireArguments().getLong(MOVIE_ID_KEY)
         viewModel.dispatchEvent(ViewEvent.LoadMovie(movieId))
     }
 
@@ -39,13 +42,31 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
     }
 
     private fun initDataCollector() {
-        viewModel.viewState.collectWhenStarted(viewLifecycleOwner) {
-            bindMovieDetails(it.movieDetails)
+        viewModel.movieDetailsState.collectWhenStarted(viewLifecycleOwner) {
+            bindMovieDetails(it)
+        }
+
+        viewModel.favState.collectWhenStarted(viewLifecycleOwner) {
+            bindFavouriteStatus(it)
         }
     }
 
     private fun initViewListener() {
         binding.imgBack.setOnClickListener { findNavController().popBackStack() }
+        binding.imgFavourite.setOnClickListener { reverseFavouriteState() }
+    }
+
+    private fun reverseFavouriteState() {
+        viewModel.dispatchEvent(ViewEvent.UpdateFavourite(!isFavourite))
+    }
+
+    private fun bindFavouriteStatus(favourite: Boolean) {
+        this.isFavourite = favourite
+        val drawableRes = if (favourite) R.drawable.ic_favourite_active
+        else R.drawable.ic_favourite_inactive
+
+        val drawable = ContextCompat.getDrawable(requireContext(), drawableRes)
+        binding.imgFavourite.setImageDrawable(drawable)
     }
 
     private fun bindMovieDetails(details: MovieDetailsUiModel?) {
@@ -58,7 +79,11 @@ class MovieDetailsFragment : Fragment(R.layout.fragment_movie_details) {
             tvTagLine.text = details.tagline
             tvTagLine.isGone = details.tagline.isNullOrBlank()
             tvReleaseDate.text = details.releaseDate
-            tvVoteCount.text = "${details.voteAverage}/${details.voteCount} votes"
+            tvVoteCount.text = getString(
+                R.string.vote_rate,
+                details.voteAverage?.toString(),
+                details.voteCount?.toString(),
+            )
             addChipToGroup(binding.chipGroupGenres, details.genres.map { it.name })
             addChipToGroup(binding.chipSpokenLanguage, details.spokenLanguages)
         }

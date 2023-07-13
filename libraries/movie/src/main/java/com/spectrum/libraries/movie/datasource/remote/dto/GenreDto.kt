@@ -7,13 +7,13 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class GenreDto(
     @Json(name = "id")
-    val id: Int? = null,
+    val id: Int,
 
     @Json(name = "name")
     val name: String? = null
 )
 
 fun GenreDto.toDomain(): Genres? {
-    if (id == null || name == null) return null
+    if (name == null) return null
     return Genres(id = id, name = name)
 }
